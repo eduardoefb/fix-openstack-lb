@@ -1,7 +1,7 @@
 mod openstack;
 mod utils;
-const CHECK_TIMES: i32 = 3;
-const CHECK_DELAY: u64 = 2;
+const CHECK_TIMES: i32 = 5;
+const CHECK_DELAY: u64 = 3;
 
 use serde_json::json;
 use std::error::Error;
