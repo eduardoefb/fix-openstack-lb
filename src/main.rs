@@ -85,8 +85,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     Err(err) => eprintln!("{} Error retrieving members for pool {}: {}", utils::get_timestamp(), pool.id, err),
                 }                
 
-            }
-            println!("{} Check times: {}", utils::get_timestamp(), check_times);
+            }            
         }
 
     }
