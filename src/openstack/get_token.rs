@@ -10,7 +10,7 @@ pub async fn get_token() -> Result<String, Box<dyn Error>> {
     let os_username = env::var("OS_USERNAME")?;
     let os_password = env::var("OS_PASSWORD")?;
     let os_project_name = env::var("OS_PROJECT_NAME")?;
-
+    
     // Construct the full Keystone URL
     let url = format!("{}/auth/tokens", os_auth_url);
 

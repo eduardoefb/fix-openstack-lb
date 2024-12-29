@@ -20,7 +20,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             return Err(err);
         }
     }
-    
+        
     let pools = openstack::get_pools(&token).await?;
 
     for pool in pools {
