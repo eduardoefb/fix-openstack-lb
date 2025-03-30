@@ -3,8 +3,8 @@ mod utils;
 //const CHECK_TIMES: i32 = 12;
 //const CHECK_DELAY: u64 = 10;
 
-const CHECK_TIMES: i32 = 1;
-const CHECK_DELAY: u64 = 1;
+const CHECK_TIMES: i32 = 6;
+const CHECK_DELAY: u64 = 5;
 
 use serde_json::json;
 use std::error::Error;
