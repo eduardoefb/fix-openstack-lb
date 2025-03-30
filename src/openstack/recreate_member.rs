@@ -11,7 +11,7 @@ pub async fn recreate_member(
     pool_id: &str,
     member_id: &str,
     member_data: &serde_json::Value,
-) -> Result<(), Box<dyn Error>> {
+) -> Result<(), Box<dyn Error + Send + Sync>> {
     // Construct the base URL using the same logic as `get_members`
     let os_auth_url = std::env::var("OS_AUTH_URL")?;
     let base_url = format!(

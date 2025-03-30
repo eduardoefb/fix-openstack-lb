@@ -29,7 +29,7 @@ struct MembersResponse {
     members: Vec<Member>,
 }
 
-pub async fn get_members(token: &str, pool_id: &str) -> Result<Vec<Member>, Box<dyn Error>> {
+pub async fn get_members(token: &str, pool_id: &str) -> Result<Vec<Member>, Box<dyn Error + Send + Sync>> {
     // Construct the URL for the members endpoint
     let os_auth_url = std::env::var("OS_AUTH_URL")?;
     let base_url = format!(
@@ -55,7 +55,7 @@ pub async fn get_members(token: &str, pool_id: &str) -> Result<Vec<Member>, Box<
 
     // Check for success and deserialize JSON
     if response.status().is_success() {
-        let body = response.json::<MembersResponse>().await?;
+        let body = response.json::<MembersResponse>().await?;        
         Ok(body.members)
     } else {
         Err(format!("Failed to retrieve members: {}", response.status()).into())

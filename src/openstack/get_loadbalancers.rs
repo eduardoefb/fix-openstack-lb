@@ -10,33 +10,17 @@ pub struct Pool {
     pub id: String,
     pub name: String,
     pub description: String,
-    pub provisioning_status: String,
     pub operating_status: String,
-    pub protocol: String,
-    pub lb_algorithm: String,
-    pub project_id: String,
-    pub members: Vec<Member>,
-    pub loadbalancers: Vec<Loadbalancer>,
-}
-
-#[derive(Debug, Deserialize)]
-pub struct Member {
-    pub id: String,
-}
-
-#[derive(Debug, Deserialize)]
-pub struct Loadbalancer {
-    pub id: String,
+    pub provisioning_status: String,
 }
 
 // Define the top-level response structure
 #[derive(Debug, Deserialize)]
-struct PoolsResponse {
-    pools: Vec<Pool>,
+struct LoadBalancersResponse {
+    loadbalancers: Vec<Pool>,
 }
 
-
-pub async fn get_pools(token: &str) -> Result<Vec<Pool>, Box<dyn Error + Send + Sync>> {
+pub async fn get_loadbalancers(token: &str) -> Result<Vec<Pool>, Box<dyn Error + Send + Sync>> {
     // Get the OS_AUTH_URL environment variable
     let os_auth_url = env::var("OS_AUTH_URL")?;
 
@@ -49,7 +33,7 @@ pub async fn get_pools(token: &str) -> Result<Vec<Pool>, Box<dyn Error + Send + 
     );
 
     // Construct the lbaas URL
-    let url = format!("{base_url}:9876/v2.0/lbaas/pools");
+    let url = format!("{base_url}:9876/v2.0/lbaas/loadbalancers");
 
     // Create a client
     let client = reqwest::Client::new();
@@ -67,10 +51,9 @@ pub async fn get_pools(token: &str) -> Result<Vec<Pool>, Box<dyn Error + Send + 
 
     // Check for success and deserialize JSON
     if response.status().is_success() {
-        let body = response.json::<PoolsResponse>().await?;
-        Ok(body.pools)
+        let body = response.json::<LoadBalancersResponse>().await?;
+        Ok(body.loadbalancers)
     } else {
-        Err(format!("Failed to retrieve pools: {}", response.status()).into())
+        Err(format!("Failed to retrieve loadbalancers: {}", response.status()).into())
     }
 }
-

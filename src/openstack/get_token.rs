@@ -3,7 +3,7 @@ use std::env;
 use std::error::Error;
 
 /// Retrieves the token from the OpenStack Keystone API using environment variables.
-pub async fn get_token() -> Result<String, Box<dyn Error>> {
+pub async fn get_token() -> Result<String, Box<dyn Error + Send + Sync>> {
     // Retrieve environment variables
     let os_auth_url = env::var("OS_AUTH_URL")?;
     let os_user_domain_name = env::var("OS_USER_DOMAIN_NAME")?;
