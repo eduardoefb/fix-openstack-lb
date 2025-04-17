@@ -19,8 +19,10 @@ git clone https://github.com/eduardoefb/fix-openstack-lb.git git
 cd /opt/openstack_manage/git
 git checkout dev
 /root/.cargo/bin/cargo build -r 
+
 systemctl restart update_loadbalancer
 systemctl status update_loadbalancer
+journalctl -u update_loadbalancer
 ```
 #### Usage:
 

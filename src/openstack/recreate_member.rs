@@ -1,5 +1,5 @@
 use crate::utils;
-const ERROR_ATTEMPTS: i32 = 30;
+const ERROR_ATTEMPTS: i32 = 300;
 const DELAY_BETWEEN_ERRORS: u64 = 1;
 
 use reqwest::header::{HeaderMap, HeaderValue};
