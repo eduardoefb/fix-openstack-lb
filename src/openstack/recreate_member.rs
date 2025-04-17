@@ -56,7 +56,7 @@ pub async fn recreate_member(
             .into());
         }
 
-        if delete_attempts == 30 {
+        if delete_attempts == ERROR_ATTEMPTS {
             return Err(format!(
                 "Failed to delete member after {} attempts: {}",ERROR_ATTEMPTS,
                 member_id
@@ -92,7 +92,7 @@ pub async fn recreate_member(
             sleep(Duration::from_secs(DELAY_BETWEEN_ERRORS)).await;
         }
 
-        if create_attempts == 30 {
+        if create_attempts == ERROR_ATTEMPTS {
             return Err(format!(
                 "Failed to create member after {} attempts: {}",ERROR_ATTEMPTS,
                 member_id
